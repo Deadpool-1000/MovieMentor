@@ -6,7 +6,7 @@ __pycache__/
 # C extensions
 *.so
 
-
+creds.py
 
 # Distribution / packaging
 .Python

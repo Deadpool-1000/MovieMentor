@@ -1,7 +1,16 @@
 import streamlit as st
-import pandas as pd
 import pickle
 import requests
+import pandas as pd
+from dotenv import load_dotenv
+import os
+
+
+def configure():
+    load_dotenv()
+
+
+configure()
 
 st.set_page_config(page_title = "Movie Recommender")
 st.title('Movie Recommender System')
@@ -11,7 +20,7 @@ def get_poster(movie_id):
     url = "https://api.themoviedb.org/3/movie/{}".format(movie_id)
     headers = {
         "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYzg0NTNlMTY3OGZkODAyYTJmZmRmMGNkYmY5OGJkMSIsInN1YiI6IjY0YzU3M2JiZWVjNWI1MDBhZDAyMDY4YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3zQqogl-YgqVpJThm1UJOXOcu7TNPcwJy42hy_Oz1Aw"
+        "Authorization": "Bearer {}".format(os.getenv('key'))
     }
     response = requests.get(url, headers=headers)
     data = response.json()
